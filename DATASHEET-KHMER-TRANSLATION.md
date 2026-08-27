@@ -115,3 +115,24 @@ the case for the blessing L22 seeks.** The founder's father is the right first s
 3. ⏳ Does `taiwan/` transcribe **both** sides, or only the Pāli? §1 shows both present in CA101 —
    **confirm across volumes before relying on it.**
 4. ⏳ Licensing sits with **L22** and is *not* separable from the witness: they are the same book.
+
+---
+
+## 7 · ⛔⛔ IDENTIFIED (2026-08-27) — `commentaries/khmer/` is a 2009 series, NOT the BI edition
+
+**Founder: *"different series — the PDFs are text-based so you can extract some text to find out."* Done. The title pages decode cleanly from the legacy encoding and settle it.**
+
+| Vol | Series title (decoded) | Commentary | Printing |
+|---|---|---|---|
+| 17 | *Suttantapiṭaka + **បប្បញ្ចសូទនី** aṭṭhakathā, translated into Khmer* — Majjhimanikāya, Majjhima- & Uparipaṇṇāsaka | **Papañcasūdanī** (MN aṭṭhakathā) | **1st printing, BE 2553 = 2009 CE** |
+| 32 | *Suttantapiṭaka + **បរមត្ថជោតិកា** aṭṭhakathā, translated into Khmer* — Khuddakanikāya: Khuddakapāṭha, Dhammapada, Udāna | **Paramatthajotikā** | **1st printing, BE 2553 = 2009 CE** |
+
+⭐ **What it is: the canon WITH ITS COMMENTARIES, translated into Khmer, published 2009.** The 1927–69 Buddhist Institute edition did **not** carry the aṭṭhakathā; this series does, which is the substantive difference and explains the different volume count (82 vs 110).
+
+⭐⭐ **A concordance key, offered as a HYPOTHESIS not a finding: each title page carries `បាលីប្រែ NN`** (*Pāli-translation no. NN*) — vol 17 = `25-26`, vol 32 = `52`. **These look like the ORIGINAL BI edition's translation-volume numbers**, i.e. the 2009 series re-issuing the BI translation with commentary added and cross-referencing the old numbering. **If true it is a ready-made concordance from this series back to the BI edition** — exactly the provenance link the project needs. ⏳ **Verify against a BI volume before relying on it.**
+
+### 7.1 · ⚠️⚠️ THE RIGHTS POSITION IS COMPLETELY DIFFERENT, AND L22 DOES NOT COVER IT
+
+**L22 reasons about a 1927–69 edition: ancient underlying text, a faithful transcription attracting no new copyright, an editorial right long expired.** ⛔ **None of that applies to a work first printed in 2009.** A 2009 translation-with-commentary is **squarely within copyright in any jurisdiction**, the translators and commentators are plausibly living, and the publisher is a live party.
+
+⛔ **Do not transcribe, extract, redistribute or train on this series pending a separate rights answer.** ⚠️ **And the substrate's earlier framing conflated the two — this datasheet's own §3 called the material "a 20th-century scholarly translation by named Cambodian monastics", which describes the BI edition, not this.** The BI translation remains the corpus this datasheet specifies; **the 82 volumes are a different, modern, protected work that happens to sit in the same directory.**

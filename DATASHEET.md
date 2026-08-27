@@ -378,3 +378,13 @@ CC0 1.0 for the alignment, schema and provenance records — **which this projec
 ⛔⛔ **AND THIS PROMOTES §1.8's `+1` PAGE OFFSET FROM CURIOSITY TO CORRECTNESS LANDMINE.** In a strictly alternating bilingual edition **an off-by-one FLIPS THE PARITY** — every Pāli page is labelled Khmer and every Khmer page Pāli, silently, across a whole volume. The text still extracts; the pipeline still runs; every record is wrong. ⛔ **RULE: never derive language from page index. Classify each page from its own content, requiring TWO signals to agree — running head and Khmer-particle density — and raise disagreement rather than resolving it by majority.**
 
 ⭐ **Consequence for §8.3: the two artifacts cannot be produced by separate projects.** One extraction pass yields both, and **mislabelling one produces the other.** Companion spec: `DATASHEET-KHMER-TRANSLATION.md`.
+
+### 8.5 · `japan/` is a DERIVATIVE of `5000/`, and the stripped pages were the provenance
+
+**Founder, 2026-08-27: *"japan/ is basically 5000/ minus all the disclaimers and such."*** That explains §1.8's constant `+1` exactly — one extra front page per volume — and it means **they are not two independent scan sets.**
+
+⛔⛔ **Schema consequence: only ONE of them is `scan_of`. `5000/` is the master; `japan/` is a REDACTED DERIVATIVE of it** and must not be recorded as a second attestation.
+
+⭐⭐ **And the counter-intuitive consequence, which matters: the DISCLAIMERS ARE THE PROVENANCE.** They carry the scan attribution — who scanned, when, under what terms — which is the precise class of information this entire project exists to preserve. **`japan/` is the cleaner copy and the LESS archival one**, and adopting it as the working master because it is tidier would discard the provenance record while looking like a simplification. **Work from `5000/`.**
+
+⭐ **A second reason to prefer `5000/`: its front matter is the likeliest place the BI edition's individual translators are named** — see `DATASHEET-KHMER-TRANSLATION.md` §5, where `translator.named` is currently empty.
