@@ -38,10 +38,12 @@ font-dependent ways.
 | `roman/` | 217 files, same names and structure | **Roman Pāli** |
 | `tipitaka-xml/` | 13 further script renderings (`deva`, `mymr`, `sinh`, `thai`, …) | various |
 
-This is the Vipassana Research Institute **Chaṭṭha Saṅgāyana Tipiṭaka** distribution. ⚠️ **It is in
-no git repository and has no remote.** It is re-obtainable from upstream, so this is a
-reproducibility inconvenience rather than a loss risk — but any local modification to it is
-currently unbacked.
+**Upstream: `github.com/VipassanaTech/tipitaka-xml`** (founder-supplied, 2026-08-27) — the Vipassana Research Institute distribution. ⚠️ **The local copy is in no git repository and has no remote**, so it records no upstream revision; since the master is versioned upstream, ⭐ **the fix is to pin and record the upstream commit SHA as the CST-side provenance anchor**, which is exactly the `lineage` field §3.2 needs and currently cannot fill.
+
+⚠️⚠️ **Two divergences from upstream, both introduced locally, and both hazards:**
+
+1. ⛔ **`pali/` is a LOCAL RENAME OF UPSTREAM `khmr/`.** Upstream ships script folders (`beng cyrl deva gujr guru khmr knda mlym mymr romn sinh taml telu thai tibt`); this tree pulled two out and renamed them — `khmr` → **`pali/`**, `romn` → **`roman/`** — leaving the other thirteen under `tipitaka-xml/`. ⛔ **A directory named `pali` that contains Khmer script is the exact misnomer that manufactures the §1.2 error.** *This is very likely how "the Khmer Tipiṭaka is already here" becomes a belief.* **Rename to `khmr/` before any processing.**
+2. ⚠️ **`deva_master/` is ABSENT.** Upstream's authoritative source is Devanagari; this tree holds **only generated derivatives**. Any correction, and any question about what a rendering is a rendering *of*, has to go back upstream.
 
 ### 1.2 · ⛔ The Khmer-script files are a TRANSLITERATION, not a witness
 
@@ -50,7 +52,11 @@ from `roman/abh01m.mul.xml` and compare the sequences.
 
 **Result:** **1,270 markers in each file, sequences identical.**
 
-Two renderings of one source, differing only in letters. The Khmer-script copy carries the
+⭐⭐ **And upstream states this in its own documentation, so it is now a citable fact rather than an inference from page markers:**
+
+> *"Primary content of the Tipitaka sourcefiles are captured in Devanagari script and stored in `deva_master` folder… A C# conversion script is then run to generate the transliterated text for all other supported scripts."*
+
+**The Khmer script is machine-generated from a Devanagari master by a conversion script.** The page-marker test (§1.2) inferred it; upstream documents it. Two renderings of one source, differing only in letters. The Khmer-script copy carries the
 **Burmese Sixth-Council transmission lineage** wearing Khmer script. ⛔ **Shipping it as "the Khmer
 Tipiṭaka" would place a lineage error inside an artifact intended for permanent etching, which is a
 one-way door.** The file is correct Khmer script, it is right there, and it looks exactly like what
@@ -221,7 +227,7 @@ for drafting this schema before more text is processed rather than after.
 2. **Is there a published `Bidokk1` transcoding table, or must one be derived?** Determines whether
    step 2 is a week or a season.
 3. **What is `khmer2/` for?**
-4. **Where does the dataset repo live?** This datasheet currently sits inside the reader app's repo
+4. ✅ **CST provenance is answered** (upstream + terms, §1.1/§7); ⏳ **pin the commit SHA.** **Where does the dataset repo live?** This datasheet currently sits inside the reader app's repo
    because that is where the PDFs are and it is tracked. **That is a placement of convenience and a
    structural decision is owed** — the dataset is not the app.
 5. **Do the 47 `pali/` volumes constitute a separate witness** to the commentaries, and does the CST
@@ -238,6 +244,10 @@ predictions, and published whether or not it is embarrassing.
 
 ## 7 · Licensing and distribution
 
-CC0 1.0 for the alignment, schema and provenance records. ⚠️ **The upstream CST text and the
-Cambodian volumes carry their own terms and this document does not relicense them** — resolve before
-redistribution, not before use.
+CC0 1.0 for the alignment, schema and provenance records — **which this project produces**.
+
+⛔⛔ **THE CST TEXT IS NOT CC0 AND CANNOT BE MADE CC0 BY US.** Upstream's stated terms: *"These files are made freely available for **non-commericial use**. Please **attribute Vipassana Research Institute** when incorporating these files into your projects."* ⚠️ **A non-commercial restriction is incompatible with CC0**, and it collides directly with the alignment house's **exclusion 3** (no closed data, everything published) and with the standing property that the artifact is *published on creation*. ⚠️ **There is also no formal LICENSE file** — a usage statement in documentation is vaguer and weaker than a licence, which makes the position harder to rely on rather than easier.
+
+⭐⭐ **The reframe of §2 resolves this, and that is a second and independent reason to hold it.** The deliverable is **the `ed="K"` column, the alignment records and the provenance** — *our* work, publishable CC0 — which **references CST loci without redistributing CST text**. A corpus deliverable would have inherited a non-commercial encumbrance into the centre of a CC0 institution; **a column does not.** *The framing that was chosen for accuracy turns out to be the one that is licensable.*
+
+⚠️ **Still to resolve, and it belongs to counsel rather than to us (legal item L21):** whether the Cambodian volumes may be redistributed at all, whether *quoting* CST loci in emitted citations is use or incorporation, and whether attribution is discharged by the `lineage` field. **Resolve before redistribution, not before use.**
