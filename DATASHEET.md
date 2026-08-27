@@ -1,0 +1,243 @@
+# Datasheet — the Khmer witness to the Pāli canon (`ed="K"`)
+
+*Specification, not data. Drafted 2026-08-27 for roadmap item **A64**, the first act of the
+Cambodian alignment house (`siliconwat.dev`). Nothing described here has been built. Every factual
+claim below about existing material was verified against the files in this tree on the date of
+drafting; the method is stated so each can be re-run.*
+
+> ⛔ **This document exists because a paper already committed to it.** `the-referee-not-the-governor`
+> §5 requires that every judgment emitted by the values model resolve to a citation carrying
+> **work, edition, locus, and transmission lineage**, and that a judgment which cannot so resolve
+> be **withheld rather than hedged**. That is a constraint on a dataset that did not have a schema.
+> **This datasheet is the check that the constraint is satisfiable.** It concludes that it is, but
+> not by the route the roadmap item assumed.
+
+---
+
+## 0 · The one-paragraph summary
+
+A machine-readable Pāli canon **already exists** in this tree, in both Khmer script and Roman, with
+a page-level concordance across four print editions. **The Khmer-script copy is a mechanical
+transliteration of the Burmese Sixth-Council text, not a Cambodian witness**, and the concordance
+has no Cambodian edition in it. Separately, **82 PDF volumes of the Cambodian edition** are present.
+The deliverable is therefore not *a Tipiṭaka* — it is **the missing witness, `ed="K"`, plus the
+document-level provenance that the existing files entirely lack.** The hard part is not alignment
+and it is not OCR: it is that the Cambodian volumes are typeset in **at least five different legacy
+Khmer font encodings**, and the transcoding from those encodings to Unicode is lossy in
+font-dependent ways.
+
+---
+
+## 1 · What is already here (verified 2026-08-27)
+
+### 1.1 · The structured canon — `SW/Tipiṭaka/`
+
+| Directory | Contents | Script |
+|---|---|---|
+| `pali/` | 218 TEI XML files, UTF-16, CST filenames (`abh01m.mul.xml`, `.att`, `.tik`) | **Khmer** |
+| `roman/` | 217 files, same names and structure | **Roman Pāli** |
+| `tipitaka-xml/` | 13 further script renderings (`deva`, `mymr`, `sinh`, `thai`, …) | various |
+
+This is the Vipassana Research Institute **Chaṭṭha Saṅgāyana Tipiṭaka** distribution. ⚠️ **It is in
+no git repository and has no remote.** It is re-obtainable from upstream, so this is a
+reproducibility inconvenience rather than a loss risk — but any local modification to it is
+currently unbacked.
+
+### 1.2 · ⛔ The Khmer-script files are a TRANSLITERATION, not a witness
+
+**Method:** extract every `<pb ed="…" n="…"/>` page-break marker from `pali/abh01m.mul.xml` and
+from `roman/abh01m.mul.xml` and compare the sequences.
+
+**Result:** **1,270 markers in each file, sequences identical.**
+
+Two renderings of one source, differing only in letters. The Khmer-script copy carries the
+**Burmese Sixth-Council transmission lineage** wearing Khmer script. ⛔ **Shipping it as "the Khmer
+Tipiṭaka" would place a lineage error inside an artifact intended for permanent etching, which is a
+one-way door.** The file is correct Khmer script, it is right there, and it looks exactly like what
+A64 asked for. **That is what makes it dangerous rather than merely wrong.**
+
+### 1.3 · The concordance exists, and Cambodia is not in it
+
+Page-break markers across the first 25 files of `roman/`:
+
+| `ed=` | Edition | Markers |
+|---|---|---|
+| `V` | VRI | 10,585 |
+| `M` | Myanmar / Sixth Council | 9,922 |
+| `T` | Thai (Siamese) | 6,424 |
+| `P` | Pali Text Society (Roman) | 2,974 |
+| **`K`** | **Cambodian** | ⛔ **absent — 0** |
+
+⭐ **The citation machinery §5 needs is already in the markup and already multi-witness.** What is
+missing is one column. *The deliverable is a column, not a corpus.*
+
+### 1.4 · Every `teiHeader` is empty
+
+`<teiHeader></teiHeader>`, throughout. **No edition statement, no date, no source description, no
+responsibility statement, no lineage.** The corpus the referee paper depends on currently asserts
+**nothing** about where it came from. This is the second half of the gap and the cheaper half to close.
+
+### 1.5 · The Cambodian witness — 82 PDF volumes
+
+`bedok.siliconwat.dev/commentaries/`:
+
+| Set | Count | Description |
+|---|---|---|
+| `khmer/` | **82** | *ព្រះត្រៃបិដក ប្រែរួមនឹងអដ្ឋកថា ភាគ N* — "Tipiṭaka translated together with the Aṭṭhakathā, vol. N" |
+| `pali/` | 47 | Pāli commentarial volumes in Khmer script |
+| `khmer2/` | **0** | empty; purpose unrecorded |
+
+⚠️ **`khmer2/` is an empty directory whose intent nobody wrote down.** Resolve or delete it before
+it is mistaken for a second witness.
+
+### 1.6 · ⭐⭐ The real difficulty: five legacy font encodings, not OCR
+
+**Method:** `pdffonts` on a sample volume; `pdftotext` on a sample page range.
+
+**Text extracts as Latin characters** — `brmtßeCatika Gdækfa kfaBN'naéRtsrN³` — because the volumes
+are typeset in **legacy Khmer fonts that map Khmer glyphs onto Latin codepoints.** Embedded fonts in
+a *single* volume:
+
+`LmnTTFantBig` (Limon family) · `APSARA` · `ThoeunA1` · `TacteingA` · **`Bidokk1`** · `TimesNewRomanPSMT`
+
+⭐ **This is the best possible bad news.** It is **not an OCR problem** — Khmer OCR is genuinely hard
+and would likely have made A64 infeasible for years. The text is present and machine-readable. But
+it is **not plain extraction either**: recovering Unicode requires a **per-font transcoding table**,
+and the mapping is lossy in known, font-specific ways for subscript consonants (*coeng*) and
+vowel-reordering.
+
+⚠️⚠️ **`Bidokk1` appears to be a custom font cut for this edition** (*bidok* = បិដក, *piṭaka*).
+**There may be no published transcoding table for it at all**, in which case one must be derived and
+that derivation becomes a primary artifact of this project in its own right.
+
+---
+
+## 2 · What the dataset is
+
+> **`ed="K"` — the Cambodian witness to the Pāli canon, aligned to the existing CST locus grid,
+> with per-unit provenance sufficient to satisfy a citation of the form
+> `work · edition · locus · lineage`.**
+
+**It is NOT:** a new Tipiṭaka · a translation · a critical edition · a claim that the Cambodian
+reading is correct where witnesses differ. **The dataset records what a witness says and where;
+adjudication is out of scope and must stay out of scope.**
+
+---
+
+## 3 · Schema
+
+### 3.1 · The distinction that must be structural, not documentary
+
+⛔ **`transliteration_of` and `witness_to` are different fields and must never be collapsed.**
+
+```
+  witness_to     : an independent line of transmission this unit attests
+                   (a printed edition set from manuscripts, with its own errors)
+  transliteration_of : a mechanical re-scripting of another unit
+                   (adds no witness; inherits the source's lineage entirely)
+```
+
+§1.2 is the whole reason. A schema in which the Khmer-script CST files can be labelled
+`witness_to: K` is a schema that permits the exact error this project exists to avoid. **Make it
+unrepresentable.**
+
+### 3.2 · Unit record
+
+```yaml
+unit_id:            K/vin/01/0042/03        # witness / piṭaka / volume / page / block
+witness:            K                        # the ed= code this unit supplies
+work:               Vinayapiṭaka/Pārājikapāḷi
+locus:
+  cst_anchor:       vin01m.mul.xml#pb-V-0.0042   # anchor into the existing grid
+  concordant:       {V: "0.0042", M: "0.0051", T: "0.0038", P: "1.0031"}
+  k_page:           "ភាគ១៧ p.412"            # this witness's own pagination
+lineage:
+  edition:          Buddhist Institute, Phnom Penh
+  volume_title:     "ព្រះត្រៃបិដក ប្រែរួមនឹងអដ្ឋកថា ភាគ១៧"
+  printing:         { year: null, run: null }   # ⚠️ UNRECORDED — see §5.1
+  witness_to:       K
+  transliteration_of: null
+provenance:
+  source_file:      "commentaries/khmer/…ភាគ១៧.pdf"
+  source_sha256:    "…"
+  pdf_page:         412
+  extractor:        "pdftotext 24.x"
+  font_runs:        [{font: "Bidokk1", span: [0,318]},
+                     {font: "LmnTTFantBig", span: [318,402]}]
+  transcode_map:    "bidokk1→unicode v0.1"      # ⛔ REQUIRED, never inferred at read time
+  transcode_lossy:  true
+  transcode_notes:  "coeng cluster at offset 211 ambiguous; two candidates recorded"
+  human_checked:    false
+text:
+  unicode:          "…"
+  raw_legacy:       "…"                          # ⛔ ALWAYS RETAINED — see §3.3
+```
+
+### 3.3 · ⛔ Retain the raw legacy bytes, permanently
+
+The transcoding is lossy and the maps will improve. **A unit that discards its pre-transcode bytes
+can never be re-derived under a better map.** Keeping `raw_legacy` costs storage and buys the
+ability to correct the entire corpus later without returning to the PDFs. *This is the same move as
+etching the source rather than the render, and as continuous export removing the hostage: never hold
+the only copy of the thing a later decision depends on.*
+
+### 3.4 · teiHeader template
+
+Every emitted file carries a populated header — edition, source, responsibility, and an explicit
+statement of whether the file is a witness or a transliteration. **An empty `teiHeader` is a defect,
+not a default** (§1.4).
+
+---
+
+## 4 · Pipeline, and exactly where provenance dies
+
+```
+  PDF volume
+      │  (1) extract text runs WITH FONT ATTRIBUTION
+      ▼
+  legacy runs  ──── ⛔ PROVENANCE DIES HERE IF FONT IS NOT RECORDED ────┐
+      │  (2) per-font transcode → Unicode                              │
+      ▼                                                                │
+  Unicode text  ──── ⛔ AND HERE IF THE MAP VERSION IS NOT RECORDED ────┤
+      │  (3) normalise (NFC, coeng ordering)                           │
+      ▼                                                                │
+  normalised  ──── ⛔ AND HERE IF raw_legacy IS DISCARDED ─────────────┘
+      │  (4) align to CST locus grid → emit ed="K" markers
+      ▼
+  unit records + <pb ed="K"/> patches
+```
+
+⚠️⚠️ **All three death-points are in steps 1–3, before any alignment happens.** They are cheap to
+record at the moment of processing and **unrecoverable afterwards** — which is the entire argument
+for drafting this schema before more text is processed rather than after.
+
+---
+
+## 5 · Open questions — none blocking the schema, all blocking the data
+
+1. **Which printing are these 82 volumes?** The Buddhist Institute edition ran 1927–69 across 110
+   volumes; 82 of a *translated-with-commentary* series is a different series or an incomplete set.
+   ⚠️ **Answer before alignment, and record per volume.** The founder's father is the right source.
+2. **Is there a published `Bidokk1` transcoding table, or must one be derived?** Determines whether
+   step 2 is a week or a season.
+3. **What is `khmer2/` for?**
+4. **Where does the dataset repo live?** This datasheet currently sits inside the reader app's repo
+   because that is where the PDFs are and it is tracked. **That is a placement of convenience and a
+   structural decision is owed** — the dataset is not the app.
+5. **Do the 47 `pali/` volumes constitute a separate witness** to the commentaries, and does the CST
+   grid even cover them?
+
+---
+
+## 6 · Coverage, as a registered prediction
+
+⭐ **The fraction of the canon this witness can be aligned to is a number to pre-register, not to
+report afterwards.** Once measured it is trivially rationalisable in either direction. It should be
+committed before the corpus is processed, in the same register as the alignment house's other
+predictions, and published whether or not it is embarrassing.
+
+## 7 · Licensing and distribution
+
+CC0 1.0 for the alignment, schema and provenance records. ⚠️ **The upstream CST text and the
+Cambodian volumes carry their own terms and this document does not relicense them** — resolve before
+redistribution, not before use.
