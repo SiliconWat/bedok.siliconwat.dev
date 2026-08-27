@@ -146,6 +146,30 @@ clusters are dropped (`ពះៃ តបដក` for `ព្រះត្រៃប�
 glyph-reordering and PUA-recovery problem, not a font-transcoding one** — a different repair from
 the 82-volume set, and it must not be assumed to be the same pipeline.
 
+### 1.8 · ⭐⭐ The apparatus already exists, and Cambodia is the one line missing from it
+
+Founder-confirmed and verified 2026-08-27. **`japan/` and `5000/` are the SAME Cambodian Buddhist Institute edition** — Japan printed the physical volumes, `5000-years.org` scanned them. §1.7's `K1`/`K2` caution is **withdrawn**: it rested on comparing volume 1 against volume 12. Same volume, both sets: **vol 12 = 929 vs 930 pp; vol 20 = 940 vs 941 pp.** ⭐ **A constant +1 offset — one set carries an extra leading page — which any page-mapping between them must encode.** `ed="K"` is one column.
+
+**And the CST distribution carries a variant apparatus: 17,868 `<note>` elements** across the `.mul.` and `.att.` files, each a variant with an edition siglum — `sī.` 8,390 (Sinhalese) · `syā.` 8,087 (Siamese) · `ka.` 6,202 (*kesuci*, "in some manuscripts") · `pī.` 5,698 (⏳ **very likely PTS — confirm against upstream's abbreviation key**) · ⛔ **Khmer: none.**
+
+⭐⭐ **This is A64's contribution stated exactly: the apparatus records where the Burmese line differs from the Sinhalese and Siamese lines, and Cambodia is absent from it exactly as it is absent from the `ed=` concordance. The deliverable adds the missing siglum to an apparatus that already holds 17,868 entries.**
+
+⚠️⚠️ **Consequence for the collation plan, and it removes most of the work: Burmese↔Sinhalese and Burmese↔Siamese are NOT tasks — they were done by VRI's editors and need only extraction.** ⛔ **And Burmese↔`romn/` is a NULL comparison** — same Devanagari master, different script (§1.2), so it can only ever return zero. **Collation effort belongs where the apparatus is silent, which is Khmer, and nowhere else.**
+
+### 1.9 · Double-keying: why a second transcription is the method, not duplication
+
+`taiwan/` transcribed the BI edition into **Word documents and published only PDFs** (founder, 2026-08-27). The founder's father is doing **the same work independently.**
+
+⭐⭐ **That is not redundancy — it is double-keying, the standard validation method for archival transcription.** Two independent re-keyings of the same printing, aligned and diffed, **locate the errors in both** and yield a measurable error rate. **The pipeline must therefore align the two rather than choose between them**, and the disagreement set is a first-class output rather than a by-product.
+
+⏳ **The `.docx` sources remain the better input and are not available.** Requested from `mahapanna.org` by email c. 2024 and **declined**. ⛔ **Do not re-ask by email.** The founder's stated plan is to ask **in person, once his father's transcription is substantive enough to signal good faith** — which gives the father's work a third function beyond text and validation: **it is the credential that reopens the request.**
+
+### 1.10 · The oral corpus — a checksum, not a witness
+
+⚠️ **The substrate's earlier "transmission emergency" flag is WITHDRAWN.** Chanting and teachers' recitation take the **BI edition as authoritative** (founder, 2026-08-27), so the oral line is *downstream* of the printed text and is not an independent witness. **There is no oral-transmission race here.**
+
+⭐ **What it is good for is real and narrower: forced alignment of recorded recitation against the transcribed text is a CHECKSUM.** Where audio and text disagree, either the transcription is wrong or the reciter departed from the page — and both are worth knowing. `5000-years.org` and YouTube hold many recordings (founder). *This operationalises the corpus's existing chant-as-checksum idea, which until now was a concept without a mechanism.* ⚠️ **Honest cost: forced alignment for chanted Pāli in Khmer script is not off-the-shelf** — recitation is slow, elongated and tonal, unlike the speech such models are trained on. **Treat as research, not as a tool to pick up.**
+
 ---
 
 ## 2 · What the dataset is
@@ -182,7 +206,14 @@ adjudication is out of scope and must stay out of scope.**
   transliteration_of a MECHANICAL re-scripting of another digital text
                      (adds nothing; inherits the source's lineage entirely)
                        └─ error class: deterministic, inherited, no new authority
+
+
+  variant_record_of  a recorded DISAGREEMENT between two witnesses at a locus
+                     (*K reads X where M reads Y at Z* — states the difference, NEVER adjudicates it)
+                       └─ error class: n/a — this is EVIDENCE ABOUT witnesses, not a witness
 ```
+
+⛔ **`variant_record_of` records disagreement and never resolves it** (§2: adjudication is out of scope). *That restraint is what makes the record citable by people who would disagree with us about which reading is right.*
 
 ⭐⭐ **`resetting_of` was added 2026-08-27 in answer to a direct question — *can the `taiwan/` PDFs be
 a witness?*** They cannot, and the two-field schema had no way to say so: a Word re-typesetting is
