@@ -368,3 +368,13 @@ CC0 1.0 for the alignment, schema and provenance records — **which this projec
 
 1. ⭐ **The `ed="K"` Pāli witness** — this datasheet's subject.
 2. **A Khmer translation corpus** (the 82 volumes) — *not* a witness, and **arguably more valuable to the Buddha-AI surface than to A64**, since it carries the doctrinal understanding in the vernacular rather than another attestation of the Pāli. ⏳ **It deserves its own datasheet and its own relation (`translation_of`), and it is out of scope here.**
+
+### 8.4 · ⭐⭐ The two corpora are INTERLEAVED — facing-page bilingual (founder, 2026-08-27)
+
+**The Buddhist Institute edition is a facing-page bilingual: Pāli (Khmer script) on one leaf, Khmer translation on the facing leaf.** Verified across `taiwan/CA101.pdf` pp.58–69 — even pages carry **zero** Khmer particles at ~480–550 chars (Pāli), odd pages carry **4–20** at ~840–990 (Khmer), and the Pāli running head is a Pāli locus while the Khmer head reads `… សែមងអំពី` (*showing about…*).
+
+⭐⭐ **Both members of a pair carry the SAME printed page number** (`១៩`,`១៩` · `២០`,`២០`): the edition numbers the **opening**, not the leaf. **So the printed page number is a ready-made 1:1 Pāli↔Khmer alignment key — the parallel corpus arrives aligned by the edition's own typography.**
+
+⛔⛔ **AND THIS PROMOTES §1.8's `+1` PAGE OFFSET FROM CURIOSITY TO CORRECTNESS LANDMINE.** In a strictly alternating bilingual edition **an off-by-one FLIPS THE PARITY** — every Pāli page is labelled Khmer and every Khmer page Pāli, silently, across a whole volume. The text still extracts; the pipeline still runs; every record is wrong. ⛔ **RULE: never derive language from page index. Classify each page from its own content, requiring TWO signals to agree — running head and Khmer-particle density — and raise disagreement rather than resolving it by majority.**
+
+⭐ **Consequence for §8.3: the two artifacts cannot be produced by separate projects.** One extraction pass yields both, and **mislabelling one produces the other.** Companion spec: `DATASHEET-KHMER-TRANSLATION.md`.
