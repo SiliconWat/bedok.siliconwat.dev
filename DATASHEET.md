@@ -42,7 +42,7 @@ font-dependent ways.
 
 ⚠️⚠️ **Two divergences from upstream, both introduced locally, and both hazards:**
 
-1. ⛔ **`pali/` is a LOCAL RENAME OF UPSTREAM `khmr/`.** Upstream ships script folders (`beng cyrl deva gujr guru khmr knda mlym mymr romn sinh taml telu thai tibt`); this tree pulled two out and renamed them — `khmr` → **`pali/`**, `romn` → **`roman/`** — leaving the other thirteen under `tipitaka-xml/`. ⛔ **A directory named `pali` that contains Khmer script is the exact misnomer that manufactures the §1.2 error.** *This is very likely how "the Khmer Tipiṭaka is already here" becomes a belief.* **Rename to `khmr/` before any processing.**
+1. ⛔ **`pali/` is a LOCAL RENAME OF UPSTREAM `khmr/`.** Upstream ships script folders (`beng cyrl deva gujr guru khmr knda mlym mymr romn sinh taml telu thai tibt`); this tree pulled two out and renamed them — `khmr` → **`pali/`**, `romn` → **`roman/`** — leaving the other thirteen under `tipitaka-xml/`. ⛔ **A directory named `pali` that contains Khmer script is the exact misnomer that manufactures the §1.2 error.** *This is very likely how "the Khmer Tipiṭaka is already here" becomes a belief.* ✅ **RENAMED to `khmr/` 2026-08-27**, after verifying nothing references the path; provenance recorded at `SW/Tipiṭaka/PROVENANCE.md`.
 2. ⚠️ **`deva_master/` is ABSENT.** Upstream's authoritative source is Devanagari; this tree holds **only generated derivatives**. Any correction, and any question about what a rendering is a rendering *of*, has to go back upstream.
 
 ### 1.2 · ⛔ The Khmer-script files are a TRANSLITERATION, not a witness
@@ -116,6 +116,36 @@ vowel-reordering.
 **There may be no published transcoding table for it at all**, in which case one must be derived and
 that derivation becomes a primary artifact of this project in its own right.
 
+### 1.7 · ⭐⭐ SIX collections exist, not one — and the two that matter were not in the plan
+
+Found 2026-08-27 at `bedok.siliconwat.dev/tipitaka/`, on the founder's pointer. **This is more and
+better material than §1.5 assumed.**
+
+| Set | n | Size | Text layer | What it is |
+|---|---|---|---|---|
+| **`japan/`** | **110** | 2.0 G | ⛔ none | ⭐ **page SCANS** of a printed Khmer edition (760 pp vol 1, 453×690 pt) |
+| **`5000/`** | **107** | 2.0 G | ⛔ none | ⭐ **page SCANS**, a *different* printing (930 pp, 484×665 pt) |
+| **`taiwan/`** | **110** | 422 M | ✅ **Khmer Unicode** | **digital RE-SETTING** — `/Title: "Microsoft Word - bedok number 1 sary.docx"`, Distiller 6.0 (~2003–05), letter-size |
+| `india/khmer/` | 220 | 474 M | (XML) | ⛔ **VRI transliteration again** — `tipitaka-khmr.xsl`, empty headers, `ed="M"`/`ed="V"`. **Not a witness** |
+| `australia/`, `germany/` | — | 19 M | HTML | web editions / translations; triage separately |
+| `commentaries/khmer/` | 82 | — | legacy Latin | §1.5–1.6; re-typeset, five legacy fonts |
+
+⭐⭐ **The pairing A64 needs is present and neither half was planned for: `taiwan/` is machine-readable
+copy-text, and `japan/` + `5000/` are the page images that let any disputed reading be checked
+against the printed page.** That is the standing arrangement of a critical edition, and it is
+already on disk.
+
+⚠️ **`japan/` and `5000/` differ in page count and page size, so they are plausibly TWO DIFFERENT
+PRINTINGS — possibly two different editions.** If that survives checking, there may be more than one
+Khmer witness, and `ed="K"` would need disambiguation (`K1`/`K2`) rather than being one column.
+**Do not collapse them before someone has compared them.**
+
+⚠️ **`taiwan/`'s Unicode extracts DAMAGED**, and differently from §1.6's problem: subscript *coeng*
+clusters are dropped (`ពះៃ តបដក` for `ព្រះត្រៃបិដក`), combining vowels detach from their base, and
+**Private Use Area codepoints appear** (`U+F155`) where glyphs are unmapped. **This is a
+glyph-reordering and PUA-recovery problem, not a font-transcoding one** — a different repair from
+the 82-volume set, and it must not be assumed to be the same pipeline.
+
 ---
 
 ## 2 · What the dataset is
@@ -134,18 +164,36 @@ adjudication is out of scope and must stay out of scope.**
 
 ### 3.1 · The distinction that must be structural, not documentary
 
-⛔ **`transliteration_of` and `witness_to` are different fields and must never be collapsed.**
+⛔ **These four relations are distinct and must never be collapsed. The schema forces exactly one.**
 
 ```
-  witness_to     : an independent line of transmission this unit attests
-                   (a printed edition set from manuscripts, with its own errors)
-  transliteration_of : a mechanical re-scripting of another unit
-                   (adds no witness; inherits the source's lineage entirely)
+  witness_to         an independent line of transmission this unit attests
+                     (a printing set from manuscripts, carrying its own errors)
+                       └─ error class: scribal / editorial, and EVIDENTIAL
+
+  scan_of            a photographic reproduction of a printing
+                     (adds no textual error at all; only legibility loss)
+                       └─ error class: none textual — this is the PRIMARY EVIDENCE
+
+  resetting_of       a HUMAN RE-KEYING of a printing into digital type
+                     (attests the same witness; introduces NEW human error)
+                       └─ error class: typos, silent normalisation, dropped diacritics
+
+  transliteration_of a MECHANICAL re-scripting of another digital text
+                     (adds nothing; inherits the source's lineage entirely)
+                       └─ error class: deterministic, inherited, no new authority
 ```
 
-§1.2 is the whole reason. A schema in which the Khmer-script CST files can be labelled
-`witness_to: K` is a schema that permits the exact error this project exists to avoid. **Make it
-unrepresentable.**
+⭐⭐ **`resetting_of` was added 2026-08-27 in answer to a direct question — *can the `taiwan/` PDFs be
+a witness?*** They cannot, and the two-field schema had no way to say so: a Word re-typesetting is
+neither an independent witness nor a mechanical transliteration. **It attests the same witness the
+scans do, while introducing a class of error neither of the other two has** — which is precisely why
+it needs its own field and its own review discipline. *A question about one artifact exposed a gap
+in the schema rather than in the artifact.*
+
+§1.2 is the reason the fourth relation exists at all: a schema in which the machine-generated
+Khmer-script CST files can be labelled `witness_to: K` permits the exact error this project exists
+to avoid. **Make it unrepresentable.**
 
 ### 3.2 · Unit record
 
@@ -230,7 +278,9 @@ for drafting this schema before more text is processed rather than after.
 4. ✅ **CST provenance is answered** (upstream + terms, §1.1/§7); ⏳ **pin the commit SHA.** **Where does the dataset repo live?** This datasheet currently sits inside the reader app's repo
    because that is where the PDFs are and it is tracked. **That is a placement of convenience and a
    structural decision is owed** — the dataset is not the app.
-5. **Do the 47 `pali/` volumes constitute a separate witness** to the commentaries, and does the CST
+5. ⭐ **Are `japan/` and `5000/` the same printing?** Page counts and page sizes differ. **If they are two editions, `ed="K"` becomes `K1`/`K2`.** Decide before alignment; it is a schema question, not a data one.
+6. **Which printing does `taiwan/` re-set, and from what?** Its provenance chain — printed edition → someone's Word re-keying (~2003–05) → PDF — is undocumented at every step, and `resetting_of` cannot be filled until it is known.
+7. **Do the 47 `pali/` volumes constitute a separate witness** to the commentaries, and does the CST
    grid even cover them?
 
 ---
