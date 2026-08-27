@@ -34,7 +34,7 @@ font-dependent ways.
 
 | Directory | Contents | Script |
 |---|---|---|
-| `pali/` | 218 TEI XML files, UTF-16, CST filenames (`abh01m.mul.xml`, `.att`, `.tik`) | **Khmer** |
+| `pali/` | 218 TEI XML files, UTF-16, CST (**Chaṭṭha Saṅgāyana Tipiṭaka** — the Sixth Council recension, Yangon 1954–56, published digitally by the Vipassana Research Institute) filenames (`abh01m.mul.xml`, `.att`, `.tik`) | **Khmer** |
 | `roman/` | 217 files, same names and structure | **Roman Pāli** |
 | `tipitaka-xml/` | 13 further script renderings (`deva`, `mymr`, `sinh`, `thai`, …) | various |
 
