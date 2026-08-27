@@ -332,3 +332,39 @@ CC0 1.0 for the alignment, schema and provenance records — **which this projec
 ⭐⭐ **The reframe of §2 resolves this, and that is a second and independent reason to hold it.** The deliverable is **the `ed="K"` column, the alignment records and the provenance** — *our* work, publishable CC0 — which **references CST loci without redistributing CST text**. A corpus deliverable would have inherited a non-commercial encumbrance into the centre of a CC0 institution; **a column does not.** *The framing that was chosen for accuracy turns out to be the one that is licensable.*
 
 ⚠️ **Still to resolve, and it belongs to counsel rather than to us (legal item L21):** whether the Cambodian volumes may be redistributed at all, whether *quoting* CST loci in emitted citations is use or incorporation, and whether attribution is discharged by the `lineage` field. **Resolve before redistribution, not before use.**
+
+---
+
+## 8 · ⛔⛔ CORRECTION (2026-08-27) — the tree holds TWO different corpora and §§1.5–1.6 conflated them
+
+**Founder asked whether the collation is *Khmer translation vs Pāli source in Khmer script*. Checking it exposed an error in this datasheet's own §1.5.**
+
+| Material | Language | Relation to the Pāli canon |
+|---|---|---|
+| `japan/` · `5000/` (scans) · `taiwan/` (re-set) | ⭐ **PĀLI, in Khmer script** | **the `ed="K"` WITNESS** |
+| `commentaries/khmer/` — 82 vols, *ព្រះត្រៃបិដក **ប្រែ**រួមនឹងអដ្ឋកថា* | ⛔ **KHMER — a TRANSLATION** | ⛔ **NOT a witness to the Pāli at all** |
+
+**Verified by sampling body text, not by title.** `taiwan/CA101.pdf` p.60/300 reads `វិនយបិដេក មហាវិភង្គេ … អថេខា … ភគវា … ឯកមន្តំ និសីទិ` — *vinayapiṭake mahāvibhaṅge … atha kho … bhagavā … ekamantaṃ nisīdi*: **Pāli**. The 82-volume set at the same depth reads *"even if one must kill only one person who must be killed, by many means…"* — **Khmer prose**, and its title carries **ប្រែ** (*translated*).
+
+### 8.1 · What this corrects
+
+⛔ **§1.5 called the 82 volumes "the Cambodian witness". They are not.** They are a **Khmer translation-with-commentary series** — a different corpus with a different use. The witness is the canonical text in `japan/`/`5000/`/`taiwan/`.
+
+### 8.2 · What the collation actually is
+
+⛔ **NOT translation-vs-source. BOTH SIDES ARE PĀLI.**
+
+```
+   Pāli, CAMBODIAN recension        ↔        Pāli, BURMESE recension
+   (BI edition, Khmer script)                (Sixth Council / CST)
+        the ed="K" witness                    ed="M", already in the apparatus
+```
+
+⭐ **Script is not the variable — RECENSION is.** The collation is an ordinary textual comparison of two recensions of one Pāli text, which is exactly what a variant apparatus is built to hold, and it is why `ed="K"` slots into the existing 17,868-entry structure rather than needing a new one.
+
+⭐⭐ **Practical consequence, and it is cheap: script must be normalised BEFORE collation** (Khmer-script Pāli → Roman or Devanagari), and **that transliterator is the MIRROR of the engine VRI already ships** — upstream converts Devanagari→Khmer with a C# script (§1.2). **The tool exists in one direction and needs inverting, not writing.** ⚠️ Round-tripping is not guaranteed to be lossless, but Pāli orthography in Khmer script is far more constrained than Khmer-language orthography, so the risk is small and testable — **test it on a chapter before trusting it on a canon.**
+
+### 8.3 · So A64 delivers TWO artifacts, and they must not be merged
+
+1. ⭐ **The `ed="K"` Pāli witness** — this datasheet's subject.
+2. **A Khmer translation corpus** (the 82 volumes) — *not* a witness, and **arguably more valuable to the Buddha-AI surface than to A64**, since it carries the doctrinal understanding in the vernacular rather than another attestation of the Pāli. ⏳ **It deserves its own datasheet and its own relation (`translation_of`), and it is out of scope here.**
